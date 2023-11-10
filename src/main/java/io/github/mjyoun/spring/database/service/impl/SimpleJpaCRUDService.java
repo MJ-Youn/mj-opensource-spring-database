@@ -60,10 +60,10 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
      * @author MJ Youn
      * @since 2023. 11. 08.
      */
-    protected SimpleJpaCRUDService(Logger logger, //
-            Class<Entity> entityClass, Class<DTO> dtoClass, //
-            Repository repository, //
-            ObjectMapper objectMapper) {
+    protected SimpleJpaCRUDService(@NotNull Logger logger, //
+            @NotNull Class<Entity> entityClass, @NotNull Class<DTO> dtoClass, //
+            @NotNull Repository repository, //
+            @NotNull ObjectMapper objectMapper) {
         this.logger = logger;
 
         this.entityClass = entityClass;
