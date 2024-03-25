@@ -4,5 +4,8 @@
 # How To Use
 
 ## release note
-### 0.1.0-SNAPSHOT - 20231108
+### 0.1.0 - 20231108
  - JpaCRUDService 추가
+
+### 0.1.1 - 20240325
+ - log 출력을 위한 class 이름 변경 (-> short)

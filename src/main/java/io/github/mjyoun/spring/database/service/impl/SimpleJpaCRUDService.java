@@ -81,7 +81,7 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
      */
     @Override
     public Result<List<DTO>> findAll(Specification<Entity> spec, @NotNull Sort sort) {
-        logger.debug("[{}] find all [spec: {}, sort: {}]", this.entityClass.getName(), spec, sort);
+        logger.debug("[{}] find all [spec: {}, sort: {}]", this.entityClass.getSimpleName(), spec, sort);
 
         List<Entity> entities = null;
 
@@ -115,7 +115,7 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
      */
     @Override
     public Result<Page<DTO>> retrieve(Specification<Entity> spec, @NotNull Pageable pageable) {
-        logger.debug("[{}] retrieve [spec: {}, pageable: {}]", this.entityClass.getName(), spec, pageable);
+        logger.debug("[{}] retrieve [spec: {}, pageable: {}]", this.entityClass.getSimpleName(), spec, pageable);
 
         Page<Entity> entities = null;
 
@@ -151,11 +151,11 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
     public Result<DTO> findById(@NotNull ID id) {
         Result<DTO> result = null;
 
-        logger.debug("[{}] find by id [id: {}]", this.entityClass.getName(), id);
+        logger.debug("[{}] find by id [id: {}]", this.entityClass.getSimpleName(), id);
         Optional<Entity> entityOp = this.repository.findById(id);
 
         if (!entityOp.isPresent()) {
-            logger.debug("[{}] 검색 결과가 존재하지 않습니다. [id: {}]", this.entityClass.getName(), id);
+            logger.debug("[{}] 검색 결과가 존재하지 않습니다. [id: {}]", this.entityClass.getSimpleName(), id);
             result = Result.ok(null);
         } else {
             result = Result.ok(this.convertEntity2DTO(entityOp.get()));
@@ -174,11 +174,11 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
     public Result<DTO> findOne(@NotNull Specification<Entity> spec) {
         Result<DTO> result = null;
 
-        logger.debug("[{}] find one [spec: {}]", this.entityClass.getName(), spec);
+        logger.debug("[{}] find one [spec: {}]", this.entityClass.getSimpleName(), spec);
         Optional<Entity> entityOp = this.repository.findOne(spec);
 
         if (!entityOp.isPresent()) {
-            logger.debug("[{}] 검색 결과가 존재하지 않습니다. [spec: {}]", this.entityClass.getName(), spec);
+            logger.debug("[{}] 검색 결과가 존재하지 않습니다. [spec: {}]", this.entityClass.getSimpleName(), spec);
             result = Result.ok(null);
         } else {
             result = Result.ok(this.convertEntity2DTO(entityOp.get()));
@@ -196,7 +196,7 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
     @Override
     @Transactional
     public Result<Boolean> save(@NotNull DTO dto) {
-        logger.debug("[{}] save", this.entityClass.getName());
+        logger.debug("[{}] save", this.entityClass.getSimpleName());
         Entity entity = this.convertDTO2Entity(dto);
 
         this.repository.save(entity);
@@ -213,7 +213,7 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
     @Override
     @Transactional
     public Result<Boolean> delete(@NotNull ID id) {
-        logger.debug("[{}] delete by id [id: {}]", this.entityClass.getName(), id);
+        logger.debug("[{}] delete by id [id: {}]", this.entityClass.getSimpleName(), id);
         this.repository.deleteById(id);
 
         return Result.ok(true);
@@ -228,7 +228,7 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
     @Override
     @Transactional
     public Result<Boolean> deleteAll(@NotNull ID[] ids) {
-        logger.debug("[{}] delete all by ids [ids: {}]", this.entityClass.getName(), ids);
+        logger.debug("[{}] delete all by ids [ids: {}]", this.entityClass.getSimpleName(), ids);
 
         List<ID> _ids = Arrays.asList(ids);
         this.repository.deleteAllByIdInBatch(_ids);

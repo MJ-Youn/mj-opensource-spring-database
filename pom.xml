@@ -13,7 +13,7 @@
 
 
 	<artifactId>spring-database</artifactId>
-	<version>0.1.0</version> <!-- '-SNAPSHOT'으로 끝나면 snapshot, 아닐 경우 release로 배포됨 -->
+	<version>0.1.1</version> <!-- '-SNAPSHOT'으로 끝나면 snapshot, 아닐 경우 release로 배포됨 -->
 
 	<name>io.github.mj-youn.spring-database</name>
 	<description>A pro1ject that organizes frequently used utilities in Spring Web Service</description>
