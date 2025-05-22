@@ -3,6 +3,7 @@ package io.github.mjyoun.spring.database.service.impl;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.validation.constraints.NotNull;
 
@@ -32,7 +33,7 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
         implements JpaCRUDService<Entity, ID, DTO, Repository> {
 
     /** logger */
-    private final Logger logger;
+    protected final Logger logger;
     /** repository */
     private final Repository repository;
     /** object mapper */
@@ -245,6 +246,19 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
     @Override
     public DTO convertEntity2DTO(@NotNull Entity entity) {
         return this.objectMapper.convertValue(entity, dtoClass);
+    }
+
+    /**
+     * @see JpaCRUDService#convertEntityList2DTOList(List)
+     * 
+     * @author MJ Youn
+     * @since 2025. 03. 11.
+     */
+    @Override
+    public List<DTO> convertEntityList2DTOList(@NotNull List<Entity> entities) {
+        return entities.stream() //
+                .map(this::convertEntity2DTO) //
+                .collect(Collectors.toList());
     }
 
     /**

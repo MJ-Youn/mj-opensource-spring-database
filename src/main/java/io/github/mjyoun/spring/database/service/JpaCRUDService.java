@@ -150,6 +150,18 @@ public interface JpaCRUDService<Entity, ID, DTO, Repository extends JpaRepositor
     public DTO convertEntity2DTO(@NotNull Entity entity);
 
     /**
+     * Convert Entity List to DTO List
+     * 
+     * @param entities
+     *            entity list
+     * @return DTO list
+     * 
+     * @author MJ Youn
+     * @since 2025. 03. 11.
+     */
+    public List<DTO> convertEntityList2DTOList(@NotNull List<Entity> entities);
+
+    /**
      * Convert DTO to Entity
      * 
      * @param dto

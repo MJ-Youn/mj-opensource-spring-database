@@ -16,3 +16,7 @@
   + nexus-staging-maven-plugin -> central-publishing-maven-plugin
   + repository 위치 변경 (ossrh -> central)
   + license, developer info 추가
+
+### 0.1.3 - 20250522
+ - logger 설정 변경
+ - JpaCRUDService#convertEntityList2DTOList 함수 생성
