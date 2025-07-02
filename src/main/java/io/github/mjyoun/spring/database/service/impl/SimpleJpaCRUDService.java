@@ -35,9 +35,9 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
     /** logger */
     protected final Logger logger;
     /** repository */
-    private final Repository repository;
+    protected final Repository repository;
     /** object mapper */
-    private final ObjectMapper objectMapper;
+    protected final ObjectMapper objectMapper;
 
     /** entity class */
     private final Class<Entity> entityClass;

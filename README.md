@@ -20,3 +20,6 @@
 ### 0.1.3 - 20250522
  - logger 설정 변경
  - JpaCRUDService#convertEntityList2DTOList 함수 생성
+
+### 0.1.4 - 20250702
+ - SimpleJpaCRUDService의 repository, object 접근제어자 변경
