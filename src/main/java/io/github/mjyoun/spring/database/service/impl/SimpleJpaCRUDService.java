@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import jakarta.validation.constraints.NotNull;
-
 import org.slf4j.Logger;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,12 +14,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import io.github.mjyoun.core.data.Result;
 import io.github.mjyoun.spring.data.ListResultConverter;
 import io.github.mjyoun.spring.data.PageResultConverter;
 import io.github.mjyoun.spring.database.service.JpaCRUDService;
+import jakarta.validation.constraints.NotNull;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  * JPA를 사용한 기본적인 CRUD를 지원하는 서비스
