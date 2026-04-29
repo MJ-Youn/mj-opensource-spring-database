@@ -1,5 +1,5 @@
 # This project is deprecated.
-[Moved Repository](https://github.com/MJ-Youn/opensource/tree/main/spring-web)
+[Moved Repository](https://github.com/MJ-Youn/opensource/tree/main/spring-database)
 
 # mj-opensource-spring-web
 
