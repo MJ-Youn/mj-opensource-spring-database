@@ -1,3 +1,6 @@
+# This project is deprecated.
+[Moved Repository](https://github.com/MJ-Youn/opensource/tree/main/spring-web)
+
 # mj-opensource-spring-web
 
 - Spring에서 JPA를 사용하는 프로젝트를 진행하면서 필요한 기능을 추가 개발하는 유틸용 library
