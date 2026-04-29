@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import jakarta.validation.constraints.NotNull;
+
 import org.slf4j.Logger;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,8 +20,8 @@ import io.github.mjyoun.core.data.Result;
 import io.github.mjyoun.spring.data.ListResultConverter;
 import io.github.mjyoun.spring.data.PageResultConverter;
 import io.github.mjyoun.spring.database.service.JpaCRUDService;
-import jakarta.validation.constraints.NotNull;
-import tools.jackson.databind.ObjectMapper;
+
+import tools.jackson.databind.json.JsonMapper;
 
 /**
  * JPA를 사용한 기본적인 CRUD를 지원하는 서비스
@@ -34,8 +36,8 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
     protected final Logger logger;
     /** repository */
     protected final Repository repository;
-    /** object mapper */
-    protected final ObjectMapper objectMapper;
+    /** json mapper */
+    protected final JsonMapper jsonMapper;
 
     /** entity class */
     private final Class<Entity> entityClass;
@@ -53,28 +55,26 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
      *            dto class
      * @param repository
      *            implements of {@link JpaRepository} and {@link JpaSpecificationExecutor}
-     * @param objectMapper
-     *            {@link ObjectMapper}
-     * 
+     * @param jsonMapper
+     *            {@link JsonMapper}
      * @author MJ Youn
      * @since 2023. 11. 08.
      */
     protected SimpleJpaCRUDService(@NotNull Logger logger, //
             @NotNull Class<Entity> entityClass, @NotNull Class<DTO> dtoClass, //
             @NotNull Repository repository, //
-            @NotNull ObjectMapper objectMapper) {
+            @NotNull JsonMapper jsonMapper) {
         this.logger = logger;
 
         this.entityClass = entityClass;
         this.dtoClass = dtoClass;
 
         this.repository = repository;
-        this.objectMapper = objectMapper;
+        this.jsonMapper = jsonMapper;
     }
 
     /**
      * @see JpaCRUDService#findAll(Specification, Sort)
-     * 
      * @author MJ Youn
      * @since 2023. 11. 10.
      */
@@ -97,7 +97,6 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
 
     /**
      * @see JpaCRUDService#findAll(Sort)
-     * 
      * @author MJ Youn
      * @since 2023. 11. 10.
      */
@@ -108,7 +107,6 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
 
     /**
      * @see JpaCRUDService#retrieve(Specification, Pageable)
-     * 
      * @author MJ Youn
      * @since 2023. 11. 10.
      */
@@ -131,7 +129,6 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
 
     /**
      * @see JpaCRUDService#retrieve(Pageable)
-     * 
      * @author MJ Youn
      * @since 2023. 11. 10.
      */
@@ -142,7 +139,6 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
 
     /**
      * @see JpaCRUDService#findById(Object)
-     * 
      * @author MJ Youn
      * @since 2023. 11. 10.
      */
@@ -165,7 +161,6 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
 
     /**
      * @see JpaCRUDService#findOne(Specification)
-     * 
      * @author MJ Youn
      * @since 2023. 11. 10.
      */
@@ -188,7 +183,6 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
 
     /**
      * @see JpaCRUDService#save(Object)
-     * 
      * @author MJ Youn
      * @since 2023. 11. 10.
      */
@@ -205,7 +199,6 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
 
     /**
      * @see JpaCRUDService#delete(Object)
-     * 
      * @author MJ Youn
      * @since 2023. 11. 10.
      */
@@ -220,7 +213,6 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
 
     /**
      * @see JpaCRUDService#deleteAll(Object[])
-     * 
      * @author MJ Youn
      * @since 2023. 11. 10.
      */
@@ -237,18 +229,16 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
 
     /**
      * @see JpaCRUDService#convertEntity2DTO(Object)
-     * 
      * @author MJ Youn
      * @since 2023. 11. 10.
      */
     @Override
     public DTO convertEntity2DTO(@NotNull Entity entity) {
-        return this.objectMapper.convertValue(entity, dtoClass);
+        return this.jsonMapper.convertValue(entity, dtoClass);
     }
 
     /**
      * @see JpaCRUDService#convertEntityList2DTOList(List)
-     * 
      * @author MJ Youn
      * @since 2025. 03. 11.
      */
@@ -261,13 +251,12 @@ public class SimpleJpaCRUDService<Entity, ID, DTO, Repository extends JpaReposit
 
     /**
      * @see JpaCRUDService#convertDTO2Entity(Object)
-     * 
      * @author MJ Youn
      * @since 2023. 11. 10.
      */
     @Override
     public Entity convertDTO2Entity(@NotNull DTO dto) {
-        return this.objectMapper.convertValue(dto, entityClass);
+        return this.jsonMapper.convertValue(dto, entityClass);
     }
 
 }
