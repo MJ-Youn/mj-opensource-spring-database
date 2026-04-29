@@ -7,7 +7,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>4.0.6</version>
-        <relativePath/>
+        <relativePath />
     </parent>
 
     <!-- Developer info -->
@@ -38,7 +38,14 @@
     <version>25.4.7-20260429.0</version> <!-- '-SNAPSHOT'으로 끝나면 snapshot, 아닐 경우 release로 배포됨 -->
 
     <name>io.github.mj-youn.spring-database</name>
-    <description>A pro1ject that organizes frequently used utilities in Spring Web Service</description>
+    <description>A project that organizes frequently used utilities in Spring Database Service</description>
+    <url>https://github.com/mj-youn/mj-opensource-spring-database</url>
+
+    <scm>
+        <url>https://github.com/mj-youn/mj-opensource-spring-database</url>
+        <connection>scm:git:git://github.com/mj-youn/mj-opensource-spring-database.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/mj-youn/mj-opensource-spring-database.git</developerConnection>
+    </scm>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
@@ -189,6 +196,8 @@
                 <extensions>true</extensions>
                 <configuration>
                     <publishingServerId>central</publishingServerId>
+                    <autoPublish>true</autoPublish>          <!-- 검증 완료 시 사용자가 버튼 안 눌러도 자동 Publish -->
+                    <waitUntil>published</waitUntil>         <!-- 완전히 Publish 끝날 때까지 터미널 안 끄고 대기 -->
                 </configuration>
             </plugin>
             <!-- E N D: publishing -->
